@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Another Simple Markdown Viewer</title>
+	<script src="markdown-it.min.js"></script>
+	<script src="jquery.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+/*var myMarked; $(document).ready(function() {
+myMarked = marked; myMarked.setOptions({ renderer: new myMarked.Renderer(), breaks: true });
+}); function markdownify(elem) { elem.innerHTML = myMarked(elem.innerHTML); }*/
+var mdp = window.markdownit({breaks:true , typographer:true});	//markdown parser for posts and comments...
+//currently TRUSTING user input and sending GET requests to retrieve file to be displayed
+//very naive implementation...
+const url = prompt("Enter the URL of the markdown file you wish to view.", "README.md");
+$.get(url, function(data, status) {
+    $("#body").text(data);  //receive data and put into body element
+    $("#body").html(mdp.render($("#body").html())); //render data as MarkDown
+});
+$(document).ready(function() { 
+    $("#body").html(mdp.render($("#body").html())); //render data as MarkDown
+});
+</script>
+<div id="body">
+# Welcome to Another Simple MarkDown Viewer
+This is a very simple MarkDown viewer intended to be used for displaying MarkDown documents at presentations. Originally, it was created for the sole purpose of displaying my college assignments(whose essay I had written in MarkDown even though the professor wanted it in either a Word Document or HTML format) and was created in around 10 minutes(so kindly report any bugs that I can fix) before assignment presentation. _Fortunately, everything worked out well._
+
+Writing MarkDown documents is so simple you can learn the basics in less than an hour from [this cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). After that, all you need is a text editor that allows you to save text files, and you are good to go!
+</div>
+<footer>
+<div style="padding-top: 50px;">
+    <hr>
+    <p style="text-align: right;">
+        <b>Another Simple Markdown Viewer</b>
+        &copy; Yash Diniz 2019.
+    </p>
+</div>    
+</footer>
+</body>
+</html>

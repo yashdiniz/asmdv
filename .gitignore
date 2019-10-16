@@ -1,0 +1,6 @@
+# ignore all my college assignment files
+*.sql
+ProjectHistory.md
+
+# ignore the project presentation images
+*.png
