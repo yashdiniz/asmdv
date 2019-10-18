@@ -9,6 +9,7 @@
             overflow-y: scroll;
             background-color: #ccc;
             border-radius: 10px;
+            padding: 10px;
         }
     </style>
 </head>
@@ -24,12 +25,12 @@ const url = prompt("Enter the URL of the markdown file you wish to view.", "READ
 function render() {
     $("#body").html(mdp.render($("#body").html()));
 }
-$.get(url, function(data, status) {
-    $("#body").text(data);  //receive data and put into body element
-    render(); //render data as MarkDown
-});
 $(document).ready(function() { 
     render(); //render data as MarkDown
+    $.get(url, function(data, status) {
+        $("#body").text(data);  //receive data and put into body element
+        render(); //render data as MarkDown
+    });
 });
 </script>
 <div id="body">
